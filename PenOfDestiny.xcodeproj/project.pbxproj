@@ -16,6 +16,8 @@
 		E234D238239E84AE00FAC1EB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E234D237239E84AE00FAC1EB /* SettingsView.swift */; };
 		E2E15A4B23A17DB60066D453 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E15A4A23A17DB60066D453 /* UserDefaults.swift */; };
 		E2E15A7123A197ED0066D453 /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E15A7023A197EC0066D453 /* SettingsStore.swift */; };
+		EB93920C25E700F500F9A84B /* pens.yml in Resources */ = {isa = PBXBuildFile; fileRef = EB93920B25E700F500F9A84B /* pens.yml */; };
+		EB93921025E701F000F9A84B /* Yams in Frameworks */ = {isa = PBXBuildFile; productRef = EB93920F25E701F000F9A84B /* Yams */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,7 @@
 		E234D237239E84AE00FAC1EB /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		E2E15A4A23A17DB60066D453 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		E2E15A7023A197EC0066D453 /* SettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
+		EB93920B25E700F500F9A84B /* pens.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = pens.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB93921025E701F000F9A84B /* Yams in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +69,7 @@
 			children = (
 				E2E15A4923A17DA70066D453 /* Extensions */,
 				18D775C022AD944300AE281E /* AppDelegate.swift */,
+				EB93920B25E700F500F9A84B /* pens.yml */,
 				18D775C222AD944300AE281E /* SceneDelegate.swift */,
 				E234D237239E84AE00FAC1EB /* SettingsView.swift */,
 				E2E15A7023A197EC0066D453 /* SettingsStore.swift */,
@@ -117,6 +122,7 @@
 			);
 			name = PenOfDestiny;
 			packageProductDependencies = (
+				EB93920F25E701F000F9A84B /* Yams */,
 			);
 			productName = MyRWTutorial;
 			productReference = 18D775BD22AD944300AE281E /* PenOfDestiny.app */;
@@ -147,6 +153,7 @@
 			);
 			mainGroup = 18D775B422AD944300AE281E;
 			packageReferences = (
+				EB93920E25E701F000F9A84B /* XCRemoteSwiftPackageReference "Yams" */,
 			);
 			productRefGroup = 18D775BE22AD944300AE281E /* Products */;
 			projectDirPath = "";
@@ -164,6 +171,7 @@
 			files = (
 				18D775D822AD963800AE281E /* LaunchScreen.storyboard in Resources */,
 				18D775CA22AD944400AE281E /* Preview Assets.xcassets in Resources */,
+				EB93920C25E700F500F9A84B /* pens.yml in Resources */,
 				18D775C722AD944400AE281E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -374,6 +382,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		EB93920E25E701F000F9A84B /* XCRemoteSwiftPackageReference "Yams" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jpsim/Yams.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EB93920F25E701F000F9A84B /* Yams */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EB93920E25E701F000F9A84B /* XCRemoteSwiftPackageReference "Yams" */;
+			productName = Yams;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 18D775B522AD944300AE281E /* Project object */;
 }
