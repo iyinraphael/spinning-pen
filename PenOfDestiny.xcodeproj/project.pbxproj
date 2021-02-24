@@ -18,6 +18,8 @@
 		E2E15A7123A197ED0066D453 /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E15A7023A197EC0066D453 /* SettingsStore.swift */; };
 		EB93920C25E700F500F9A84B /* pens.yml in Resources */ = {isa = PBXBuildFile; fileRef = EB93920B25E700F500F9A84B /* pens.yml */; };
 		EB93921025E701F000F9A84B /* Yams in Frameworks */ = {isa = PBXBuildFile; productRef = EB93920F25E701F000F9A84B /* Yams */; };
+		EB93921325E7057E00F9A84B /* RemoteImageFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB93921225E7057E00F9A84B /* RemoteImageFetcher.swift */; };
+		EB93921625E705D700F9A84B /* RemoteImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB93921525E705D700F9A84B /* RemoteImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +35,8 @@
 		E2E15A4A23A17DB60066D453 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		E2E15A7023A197EC0066D453 /* SettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
 		EB93920B25E700F500F9A84B /* pens.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = pens.yml; sourceTree = "<group>"; };
+		EB93921225E7057E00F9A84B /* RemoteImageFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImageFetcher.swift; sourceTree = "<group>"; };
+		EB93921525E705D700F9A84B /* RemoteImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,10 +78,12 @@
 				E234D237239E84AE00FAC1EB /* SettingsView.swift */,
 				E2E15A7023A197EC0066D453 /* SettingsStore.swift */,
 				E234D235239E848B00FAC1EB /* SpinningPenView.swift */,
+				EB93921225E7057E00F9A84B /* RemoteImageFetcher.swift */,
 				18D775C622AD944400AE281E /* Assets.xcassets */,
 				18D775DA22AD963800AE281E /* LaunchScreen.storyboard */,
 				18D775CE22AD944400AE281E /* Info.plist */,
 				18D775C822AD944400AE281E /* Preview Content */,
+				EB93921525E705D700F9A84B /* RemoteImageView.swift */,
 			);
 			path = PenOfDestiny;
 			sourceTree = "<group>";
@@ -183,7 +189,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB93921325E7057E00F9A84B /* RemoteImageFetcher.swift in Sources */,
 				E234D238239E84AE00FAC1EB /* SettingsView.swift in Sources */,
+				EB93921625E705D700F9A84B /* RemoteImageView.swift in Sources */,
 				18D775C122AD944300AE281E /* AppDelegate.swift in Sources */,
 				E2E15A4B23A17DB60066D453 /* UserDefaults.swift in Sources */,
 				E2E15A7123A197ED0066D453 /* SettingsStore.swift in Sources */,

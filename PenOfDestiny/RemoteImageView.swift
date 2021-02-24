@@ -1,4 +1,4 @@
-/// Copyright (c) 2020 Razeware LLC
+/// Copyright (c) 2021 Razeware LLC
 /// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -26,39 +26,58 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-import Foundation
-import Yams
 
-struct Pen: Codable, Hashable, Identifiable {
-  var id: Int { hashValue }
-  var key: String
-  var label: String
-  var url: URL
-}
+import SwiftUI
 
-class SettingsStore: ObservableObject {
-
-  static func getAvailablePens() -> [Pen] {
+public struct RemoteImageView<Content: View>: View {
     // 1
-    if let path = Bundle.main.path(forResource: "pens", ofType: "yml") {
-      do {
-        // 2
-        let yamlString = try String(contentsOfFile: path)
-        // 3
-        let decoder = YAMLDecoder()
-        return try decoder.decode([Pen].self, from: yamlString)
-      } catch {
-        print("Could not load pen JSON!")
-      }
+    @ObservedObject var imageFetcher: RemoteImageFetcher
+    var content: (_ image: Image) -> Content
+    let placeHolder: Image
+    
+    // 2
+    @State var previousURL: URL? = nil
+    @State var imageData: Data = Data()
+    
+    // 3
+    public init(
+        placeHolder: Image,
+        imageFetcher: RemoteImageFetcher,
+        content: @escaping (_ image: Image) -> Content
+    ) {
+        self.placeHolder = placeHolder
+        self.imageFetcher = imageFetcher
+        self.content = content
     }
+    
     // 4
-    return []
-
-  }
-
-  @Published var selectedPen: Pen = UserDefaults.selectedPen {
-    didSet {
-      UserDefaults.selectedPen = selectedPen
+    public var body: some View {
+        DispatchQueue.main.async {
+            if (self.previousURL != self.imageFetcher.getUrl()) {
+                self.previousURL = self.imageFetcher.getUrl()
+            }
+            
+            if (!self.imageFetcher.imageData.isEmpty) {
+                self.imageData = self.imageFetcher.imageData
+            }
+        }
+        
+        let uiImage = imageData.isEmpty ? nil : UIImage(data: imageData)
+        let image = uiImage != nil ? Image(uiImage: uiImage!) : nil;
+        
+        // 5
+        return ZStack() {
+            if image != nil {
+                content(image!)
+            } else {
+                content(placeHolder)
+            }
+        }
+        .onAppear(perform: loadImage)
     }
-  }
+    
+    // 6
+    private func loadImage() {
+        imageFetcher.fetch()
+    }
 }

@@ -1,4 +1,4 @@
-/// Copyright (c) 2020 Razeware LLC
+/// Copyright (c) 2021 Razeware LLC
 /// 
 /// Permission is hereby granted, free of charge, to any person obtaining a copy
 /// of this software and associated documentation files (the "Software"), to deal
@@ -26,39 +26,34 @@
 /// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 /// THE SOFTWARE.
 
-import Foundation
-import Yams
+import SwiftUI
 
-struct Pen: Codable, Hashable, Identifiable {
-  var id: Int { hashValue }
-  var key: String
-  var label: String
-  var url: URL
-}
+public class RemoteImageFetcher: ObservableObject {
+  @Published var imageData = Data()
+  let url: URL
 
-class SettingsStore: ObservableObject {
+  public init(url: URL) {
+    self.url = url
+  }
 
-  static func getAvailablePens() -> [Pen] {
-    // 1
-    if let path = Bundle.main.path(forResource: "pens", ofType: "yml") {
-      do {
-        // 2
-        let yamlString = try String(contentsOfFile: path)
-        // 3
-        let decoder = YAMLDecoder()
-        return try decoder.decode([Pen].self, from: yamlString)
-      } catch {
-        print("Could not load pen JSON!")
+  // 1
+  public func fetch() {
+    URLSession.shared.dataTask(with: url) { (data, _, _) in
+      guard let data = data else { return }
+      DispatchQueue.main.async {
+        self.imageData = data
       }
-    }
-    // 4
-    return []
-
+    }.resume()
   }
 
-  @Published var selectedPen: Pen = UserDefaults.selectedPen {
-    didSet {
-      UserDefaults.selectedPen = selectedPen
-    }
+  // 2
+  public func getImageData() -> Data {
+    return imageData
+  }
+
+  // 3
+  public func getUrl() -> URL {
+    return url
   }
 }
+

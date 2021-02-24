@@ -33,6 +33,8 @@ struct SpinningPenView: View {
   @State var numberOfSegments = 6.0
   
   @ObservedObject var settingsStore = SettingsStore()
+
+
   
   func nextRotationAmount() -> Double {
     // Choose the next person
@@ -54,15 +56,19 @@ struct SpinningPenView: View {
   }
   
   var body: some View {
+    let imageFetcher = RemoteImageFetcher(url: settingsStore.selectedPen.url)
     return VStack {
       Button(action: {
         withAnimation(.spring(response:1.25, dampingFraction:3.0, blendDuration:0.5)) {
           self.rotationAmount += self.nextRotationAmount()
         }
       }) {
-        Image("sharpie")
-          .resizable()
-          .scaledToFit()
+        RemoteImageView(placeHolder: Image("sharpie"), imageFetcher: imageFetcher) {
+          $0
+            .resizable()
+            .scaledToFit()
+        }
+
       }
       .buttonStyle(PlainButtonStyle())
       .rotation3DEffect(.degrees(rotationAmount), axis: (x: 0, y: 0, z: 1))
